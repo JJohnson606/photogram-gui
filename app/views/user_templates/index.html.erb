@@ -43,19 +43,21 @@
 <% @all_users.each do |users| %>
     
     <tr>
+    
       <td>
-       <%= users.id%>
+       <%= users.id %>
       </td>
 
       <td>
-      <%= users.username%>
+      <%= users.username %>
       </td>
 
       <td>
-        <a href="/users/<%= users.username%>">. 
+        <a href="/users/<%= users.username %>" >
           Show details
         </a>
       </td>
+
     </tr>
 </tbody></table>
  <%end%>

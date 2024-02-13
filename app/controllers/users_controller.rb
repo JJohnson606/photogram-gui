@@ -11,31 +11,32 @@ def index
 end
 
 def show 
+  render({:template => "user_templates/details"})
 end
 
 def create
   @the_user = User.new
-  @the_user.name = params.fetch("query_user_name")
-  @the_user.dob = params.fetch("query_dob")
-  @the_user.bio = params.fetch("query_comments")
-  @the_user.image = params.fetch("query_image")
-
-
-#  id             :integer          not null, primary key
-#  comments_count :integer
-#  likes_count    :integer
-#  private        :boolean
-#  username       :string
-#  created_at     :datetime         not null
-#  updated_at     :datetime   
-
+  @the_user.username = params.fetch("input_username")
 
   if @the_user.valid?
     @the_user.save
-    redirect_to("/actors", { :notice => "Actor created successfully." })
+    redirect_to("/user", { :notice => "User added successfully." })
   else
-    redirect_to("/actors", { :notice => "Actor failed to create successfully." })
+    redirect_to("/user", { :notice => "Actor failed to update successfully." }) 
   end
+end
+
+
+def update 
+  my_id = params.fetch("path_id")
+  @the_user = User.where(:id => my_id)
+  @the_user.user_name = params.fetch("input_username")
+
+  @the_user.save
+  redirect_to("/user", {:notice => "Username updated successfully."})
+end
+
+def destroy
 end
 
 
