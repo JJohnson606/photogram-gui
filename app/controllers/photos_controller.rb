@@ -1,9 +1,28 @@
+class PhotosController < ApplicationController
 
-#Id,	Caption,
+def index
+  @photos = Photo.all
+  render({:template => "photos_templates/index"})
+end
 
-#likes 
+def show
+end
 
-#Id,	Fan,	Photo	,Created at,	Updated at.
+def create
+end
 
-#comments 
-#Id,	Photo	Body,	Author,	Created at,	Updated at,
+def create_comment
+end
+
+def update
+end
+
+def destroy
+end
+  
+
+
+
+
+
+end
