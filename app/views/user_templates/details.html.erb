@@ -2,7 +2,7 @@
     <nav>
       <ul>
         <li>
-          <a href="/user">Users</a>
+          <a href="/users">Users</a>
         </li>
         <li>
           <a href="/photos">Photos</a>
@@ -10,30 +10,43 @@
       </ul>
     </nav>
 
-    <h1>anisa</h1>
+    <h1><%= @user.username %> </h1>
 
 <dl>
   <dt>
     ID
   </dt>
   <dd>
-    117
+    <%= @user.id %>
   </dd>
+
+
+  <dt>
+    Delete User
+  </dt>
+  <dd>
+    <a href="/delete_user/<%= @user.id%>">
+      Delete this user
+    </a>
+  </dd>
+
+
+
 
   <dt>
     Edit user
   </dt>
   <dd>
-    <form action="/update_user/:path_id" method="post">
+    <form action="/update_user/<%= @user.id %>" method="post">
       <label for="browser_username">Username</label>
-      <input id="browser_username" type="text" name="input_username" value="">
+      <input id="browser_username" type="text" name="input_username" value="<%= @user.username %>">
 
       <button>Update user</button>
     </form>
   </dd>
 </dl>
 
-<h2>Own photos (0)</h2>
+<h2>Own photos (<%= @user.own_photos.count %>) </h2>
 
 <table border="1">
   <tbody><tr>
@@ -55,7 +68,36 @@
 
     <th>
     </th>
+
   </tr>
+    <% user_photos = @user.own_photos%>
+    <% user_photos.each do |up| %>
+    <tr>
+     
+      <td> 
+         <img src= <%= up.image%> height="300px">
+      </td>
+
+      <td>
+         <%= up.poster.username%>
+      </td>
+
+      <td>
+        <%= up.caption%>
+      </td>
+       
+      <td>
+        <%= up.created_at%>
+      </td>
+     
+      <td>
+        <a href="/photos/<%= up.id %>">
+          Show details
+        </a>
+      </td>
+
+    </tr>
+  <%end%>
 
 </tbody></table>
 
